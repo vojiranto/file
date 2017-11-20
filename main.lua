@@ -31,6 +31,18 @@ function new.File(fileName)
             file.close()
             return tmp
     end end
+    
+    public.lines = function()
+        local file = io.open(fileName, "r")
+        local result = {}
+        if file then
+            for line in io.lines(file) do 
+                result[#result + 1] = line
+            end
+            file:close() 
+        end
+        return result
+    end
 
     return copy(public)
 end
